@@ -100,7 +100,7 @@ class DTree:
             if node is None:
                 return True
             elif node.variable is None: 
-                return False
+                return True
             elif node.variable in existing_variables:
                 return False
             else:
