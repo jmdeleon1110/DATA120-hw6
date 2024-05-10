@@ -57,7 +57,7 @@ class DTree:
         self.greater = greater
         self.outcome = outcome
         
-        if (variable is not None and threshold is not None and lessequal is not None and greater is not None) != (outcome is not None):
+        if (variable is None or threshold is None or lessequal is None or greater is None) == (outcome is None):
             raise ValueError("variable, threshold, lessequal, and greater or outcome should be defined")
     
     def tuple_atleast(self):
