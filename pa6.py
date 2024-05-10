@@ -44,9 +44,8 @@ il.add_child(KVTree("Chicago", 2.7))
 
 def treemap(function, tree):
 
-    funct_key, funct_value = function(tree.key, tree.value)
-    tree.key = funct_key
-    tree.value = funct_value
+    tree.key, tree.value = function(tree.key, tree.value)
+    
     for child in tree.children:
         treemap(function, child)
 
@@ -103,9 +102,11 @@ class DTree:
 
     def no_repeats(self):
         def helper(node, existing_variables):
+            print(f"Checking node with variable: {node.variable}")
             if node is None:
                 return True
             elif node.variable in existing_variables:
+                print(f"Repeat found for variable: {node.variable}")
                 return False
             else:
                 existing_variables.add(node.variable)
