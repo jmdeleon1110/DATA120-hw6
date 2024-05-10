@@ -97,17 +97,17 @@ class DTree:
                 return self.greater.find_outcome(variable)
             else:
                 return self.outcome 
-        
+
     def no_repeats(self):
-
-        def helper(child, existing_variables):
-            if child is None:
-                return True 
-            elif child.variable in existing_variables:
-                return False  
+        def helper(node, existing_variables):
+            if node is None:
+                return True
+            elif node.variable in existing_variables:
+                return False
             else:
-                existing_variables.add(child.variable)
-                return helper(child.lessequal, existing_variables) and helper(child.greater, existing_variables)
+                existing_variables.add(node.variable)
+                return (helper(node.lessequal, existing_variables) and
+                        helper(node.greater, existing_variables))
 
-        return helper(self, set()) 
+        return helper(self, set())
 
