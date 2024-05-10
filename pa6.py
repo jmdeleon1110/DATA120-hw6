@@ -1,16 +1,16 @@
-def make_change(total): 
-    coin_types = [1,5,10,25,100]
-    combinations = []    
-    
+def make_change(total):
+    coin_types = [1, 5, 10, 25, 100]
+    combinations = []
+
     if total in coin_types:
         combinations.append([total])
 
     for coin in [c for c in coin_types if c < total]:
-        sub_combinations = coin_combinations(total - coin)
+        sub_combinations = make_change(total - coin)  
         for combination in sub_combinations:
             new_combination = [coin] + combination
-            new_combination.sort() 
-            if new_combination not in combinations:  
+            new_combination.sort()
+            if new_combination not in combinations:
                 combinations.append(new_combination)
 
     return combinations
