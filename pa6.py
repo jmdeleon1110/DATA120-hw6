@@ -44,8 +44,7 @@ il.add_child(KVTree("Chicago", 2.7))
 
 def treemap(node, function):
     
-    node.key = function(node.key)
-    node.value = function(node.value)
+    function(node)
     
     for child in node.children:
         treemap(child, function)
