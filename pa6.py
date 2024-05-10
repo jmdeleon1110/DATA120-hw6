@@ -16,13 +16,13 @@ def make_change(total):
     return combinations
 
 def dict_filter(funct, dictionary):
-    
     new_dict = {}
     
     for k, v in dictionary.items():
         if funct(k, v):
             new_dict[k] = v
-        return new_dict
+    
+    return new_dict 
 
 def treemap(self, function):
     
