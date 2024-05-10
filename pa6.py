@@ -56,11 +56,9 @@ class DTree:
         self.lessequal = lessequal
         self.greater = greater
         self.outcome = outcome
-
-        if (variable is not None and threshold is not None and lessequal is not None and greater is not None):
-            raise ValueError("All four of the attributes need to be defined")
-        elif (outcome is not None and (lessequal is not None or greater is not None)):
-            raise ValueError("All four of the attributes need to be defined")
+        
+        if (variable is not None and threshold is not None and lessequal is not None and greater is not None) != (outcome is not None):
+            raise ValueError("variable, threshold, lessequal, and greater or outcome should be defined")
     
     def tuple_atleast(self):
 
