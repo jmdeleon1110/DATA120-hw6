@@ -49,11 +49,6 @@ def treemap(function, tree):
     for child in tree.children:
         treemap(function, child)
 
-def math_funct(key, value):
-    return key.upper(), value * 1000000  
-
-treemap(samplekv, math_funct)
-
 class DTree:
     def __init__(self, variable=None, threshold=None, lessequal=None, greater=None, outcome=None):
         self.variable = variable
