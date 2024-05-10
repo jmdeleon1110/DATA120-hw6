@@ -33,8 +33,7 @@ def treemap(self, function):
             child.treemap(function)
 
 class DTree:
-    def __init__(self, variable=None, threshold=None, lessequal=None, 
-greater=None, outcome=None):
+    def __init__(self, variable=None, threshold=None, lessequal=None, greater=None, outcome=None):
         self.variable = variable
         self.threshold = threshold
         self.lessequal = lessequal
@@ -48,8 +47,7 @@ greater=None, outcome=None):
                 return max_index
             elif child.variable is not None:
                 max_index = max(max_index, child.variable)
-            max_index = max(helper(child.lessequal, max_index), 
-helper(child.greater, max_index))
+            max_index = max(helper(child.lessequal, max_index), helper(child.greater, max_index))
             return max_index
 
         max_index = helper(self, -1)
@@ -89,8 +87,7 @@ helper(child.greater, max_index))
                 return False  
             else:
                 existing_variables.add(child.variable)
-                return helper(child.lessequal, existing_variables) and 
-helper(child.greater, existing_variables)
+                return helper(child.lessequal, existing_variables) and helper(child.greater, existing_variables)
 
         return helper(self, set()) 
 
