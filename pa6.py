@@ -24,13 +24,31 @@ def dict_filter(funct, dictionary):
     
     return new_dict 
 
-def treemap(self, function):
+class KVTree:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+        self.children = []
     
-        self.key = function(self.key)
-        self.value = function(self.value)
-        
-        for child in self.children:
-            child.treemap(function)
+    def add_child(self, child):
+        self.children.append(child)
+
+samplekv = KVTree("us", 4.6)
+pa = KVTree("pa", 1.9)
+samplekv.add_child(pa)
+pa.add_child(KVTree("Pittsburgh", 0.3))
+pa.add_child(KVTree("Philadelphia", 1.6))
+il = KVTree("il", 2.7)
+samplekv.add_child(il)
+il.add_child(KVTree("Chicago", 2.7))
+
+def treemap(child, funct):
+    
+    child.key = funct(child.key)
+    child.value = funct(child.value)
+    
+    for child in child.children:
+        treemap(child, function)
 
 class DTree:
     def __init__(self, variable=None, threshold=None, lessequal=None, greater=None, outcome=None):
