@@ -102,7 +102,6 @@ class DTree:
 
     def no_repeats(self):
         def helper(node, existing_variables):
-            print(f"Checking node with variable: {node.variable}")
             if node is None:
                 return True
             elif node.variable in existing_variables:
