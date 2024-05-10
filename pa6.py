@@ -6,7 +6,7 @@ def make_change(total):
         combinations.append([total])
 
     for coin in [c for c in coin_types if c < total]:
-        sub_combinations = make_change(total - coin)  
+        sub_combinations = make_change(total - coin)
         for combination in sub_combinations:
             new_combination = [coin] + combination
             new_combination.sort()
@@ -15,23 +15,26 @@ def make_change(total):
 
     return combinations
 
+
 def dict_filter(funct, dictionary):
     new_dict = {}
-    
+
     for k, v in dictionary.items():
         if funct(k, v):
             new_dict[k] = v
-    
-    return new_dict 
+
+    return new_dict
+
 
 class KVTree:
     def __init__(self, key, value):
         self.key = key
         self.value = value
         self.children = []
-    
+
     def add_child(self, child):
         self.children.append(child)
+
 
 samplekv = KVTree("us", 4.6)
 pa = KVTree("pa", 1.9)
@@ -42,12 +45,13 @@ il = KVTree("il", 2.7)
 samplekv.add_child(il)
 il.add_child(KVTree("Chicago", 2.7))
 
-def treemap(function, tree):
 
+def treemap(function, tree):
     tree.key, tree.value = function(tree.key, tree.value)
-    
+
     for child in tree.children:
         treemap(function, child)
+
 
 class DTree:
     def __init__(self, variable=None, threshold=None, lessequal=None, greater=None, outcome=None):
@@ -56,12 +60,11 @@ class DTree:
         self.lessequal = lessequal
         self.greater = greater
         self.outcome = outcome
-        
+
         if (variable is None or threshold is None or lessequal is None or greater is None) == (outcome is None):
             raise ValueError("variable, threshold, lessequal, and greater or outcome should be defined")
-    
-    def tuple_atleast(self):
 
+    def tuple_atleast(self):
         def helper(child, max_index):
             if child is None:
                 return max_index
@@ -71,7 +74,6 @@ class DTree:
             return max_index
 
         max_index = helper(self, -1)
-
         return max_index + 1
 
     def find_outcome(self, variable):
@@ -91,18 +93,18 @@ class DTree:
             if self.lessequal is not None:
                 return self.lessequal.find_outcome(variable)
             else:
-                return self.outcome  
+                return self.outcome
         else:
             if self.greater is not None:
                 return self.greater.find_outcome(variable)
             else:
-                return self.outcome 
-                
+                return self.outcome
+
     def no_repeats(self):
         def helper(node, existing_variables):
             if node is None:
                 return True
-            elif node.variable is None: 
+            elif node.variable is None:
                 return True
             elif node.variable in existing_variables:
                 return False
