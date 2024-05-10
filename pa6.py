@@ -42,12 +42,12 @@ il = KVTree("il", 2.7)
 samplekv.add_child(il)
 il.add_child(KVTree("Chicago", 2.7))
 
-def treemap(child, funct):
+def treemap(node, function):
     
-    child.key = funct(child.key)
-    child.value = funct(child.value)
+    node.key = function(node.key)
+    node.value = function(node.value)
     
-    for child in child.children:
+    for child in node.children:
         treemap(child, function)
 
 class DTree:
