@@ -42,15 +42,14 @@ il = KVTree("il", 2.7)
 samplekv.add_child(il)
 il.add_child(KVTree("Chicago", 2.7))
 
-def treemap(node, funct):
-    
-    node.key, node.value = funct(node.key, node.value)
-    
-    for child in node.children:
+def treemap(element, funct):
+    funct(element) 
+    for child in element.children:
         treemap(child, funct)
 
-def math_funct(key, value):
-    return key.upper(), value * 1000000
+def math_funct(element):
+    element.key = element.key.upper()
+    element.value *= 1000000
 
 treemap(samplekv, math_funct)
 
