@@ -94,13 +94,14 @@ class DTree:
                 return self.greater.find_outcome(variable)
             else:
                 return self.outcome 
-
+                
     def no_repeats(self):
         def helper(node, existing_variables):
             if node is None:
                 return True
+            elif node.variable is None: 
+                return False
             elif node.variable in existing_variables:
-                print(f"Repeat found for variable: {node.variable}")
                 return False
             else:
                 existing_variables.add(node.variable)
